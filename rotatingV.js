@@ -6,6 +6,10 @@ var gl;
 var theta = 0.0;
 var thetaLoc;
 
+var colorChange;
+
+var swap = 1;
+
 window.onload = function init()
 {
     canvas = document.getElementById( "gl-canvas" );
@@ -45,6 +49,9 @@ window.onload = function init()
 
     thetaLoc = gl.getUniformLocation(program, "uTheta");
 
+    colorChange = gl.getUniformLocation(program, "color");
+
+
     render();
 };
 
@@ -58,6 +65,16 @@ function render() {
         theta += 0.1;
         gl.uniform1f(thetaLoc, theta);
 
+        if (swap == 0) 
+        {   
+            gl.uniform4f(colorChange, 0.0, 0.0, 1.0, 1.0);
+            swap = 1;
+        }
+        else {
+            gl.uniform4f(colorChange, 1.0, 0.5, 0.0, 1.0);
+            swap = 0;
+        }
+        
         gl.drawArrays(gl.LINE_STRIP, 0, 3);
     }, 1000);
 }
