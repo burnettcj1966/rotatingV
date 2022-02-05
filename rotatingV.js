@@ -18,16 +18,16 @@ window.onload = function init()
     //  Configure WebGL
     //
     gl.viewport(0, 0, canvas.width, canvas.height);
-    gl.clearColor(0.5, 0.0, 0.0, 0.0);
+    gl.clearColor(1.0, 1.0, 1.0, 1.0);
 
     //  Load shaders and initialize attribute buffers
     var program = initShaders(gl, "vertex-shader", "fragment-shader");
     gl.useProgram(program);
 
     var vertices = [
-        vec2(0, 0),
-        vec2(.65, .75),
-        vec2(-.65, .75),
+        vec2(.5,.3),
+        vec2(0, -1),
+        vec2(-.5, .3),
     ];
 
 
@@ -50,13 +50,14 @@ window.onload = function init()
 
 
 function render() {
+    //set timeout to 1 FPS
+    setTimeout(function() {
+        requestAnimationFrame(render);
+        gl.clear(gl.COLOR_BUFFER_BIT);
 
-    gl.clear(gl.COLOR_BUFFER_BIT);
+        theta += 0.1;
+        gl.uniform1f(thetaLoc, theta);
 
-    theta += 0.005;
-    gl.uniform1f(thetaLoc, theta);
-
-    gl.drawArrays(gl.LINES, 0, 4);
-
-    requestAnimationFrame(render);
+        gl.drawArrays(gl.LINE_STRIP, 0, 3);
+    }, 1000);
 }
