@@ -10,6 +10,8 @@ var colorChange;
 
 var swap = 1;
 
+var FPS = 100; //user specified FPS
+
 window.onload = function init()
 {
     canvas = document.getElementById( "gl-canvas" );
@@ -62,7 +64,7 @@ function render() {
         requestAnimationFrame(render);
         gl.clear(gl.COLOR_BUFFER_BIT);
 
-        theta += (2*Math.PI) / 60; 
+        theta += (2*Math.PI) / ((60)*(FPS)); 
         gl.uniform1f(thetaLoc, theta);
 
         //color swap
@@ -77,5 +79,5 @@ function render() {
         }
         
         gl.drawArrays(gl.LINE_STRIP, 0, 3);
-    }, 1000);
+    }, (1000/FPS));
 }
