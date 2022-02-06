@@ -37,9 +37,25 @@
         </script>
         <script type = "text/javascript" src = "initShaders.js"></script>
         <script type = "text/javascript" src = "MVnew.js"></script>
-        <script type = "text/javascript" src = "rotatingV.js"></script>
+
+
+
     </head>
     <body>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="60" value="1" class="slider" id="myRange">
+            <p>FPS: <span id="demo"></span></p>
+            <script>
+                var slider = document.getElementById("myRange");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value; 
+                slider.oninput = function() {
+                output.innerHTML = this.value;
+                }       
+            </script>
+        </div>
         <canvas id = "gl-canvas" width="512" height="512"> OOPS YOUR BROWSER SUCKS</canvas>
     </body>
+
+    <script type = "text/javascript" src = "rotatingV.js"></script>
 </html>

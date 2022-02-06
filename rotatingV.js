@@ -10,8 +10,6 @@ var colorChange;
 
 var swap = 1;
 
-var FPS = 100; //user specified FPS
-
 window.onload = function init()
 {
     canvas = document.getElementById( "gl-canvas" );
@@ -60,6 +58,8 @@ window.onload = function init()
 
 function render() {
     //set timeout to 1 FPS
+    var slider = document.getElementById("myRange"); //user specified FPS
+    var FPS = slider.value;
     setTimeout(function() {
         requestAnimationFrame(render);
         gl.clear(gl.COLOR_BUFFER_BIT);
