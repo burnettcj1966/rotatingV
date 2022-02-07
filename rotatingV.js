@@ -15,6 +15,7 @@ window.onload = function init()
     canvas = document.getElementById( "gl-canvas" );
 
     gl = canvas.getContext('webgl2');
+
     if (!gl) alert( "WebGL 2.0 isn't available" );
 
 
